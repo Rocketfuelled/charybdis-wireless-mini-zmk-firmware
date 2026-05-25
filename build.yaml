@@ -2,7 +2,7 @@
 # Each entry under `include` becomes a single matrix item in CI and
 # the local build script.
 
-board: [ xiao_ble//zmk ]
+board: [ nice_nano//zmk ]
 
 include:
 
@@ -11,16 +11,19 @@ include:
     board: xiao_ble//zmk
     shield: settings_reset
 
+  - name: settings_reset
+    board: nice_nano//zmk
+    shield: settings_reset
+
 # ── Standard Dongle Firmwares ─────────────────────────────────────────────────
   - name: dongle_standard_nano
     board: xiao_ble//zmk
-    shield:
-      - charybdis_left_dongle
-      - charybdis_right_dongle
-      - charybdis_dongle
     keymap:
       - qwerty
       - colemak_dh
-      # - canary
-      # - focal
-      # - graphite
+    builds:
+      - shield: charybdis_left_dongle
+        board: nice_nano//zmk
+      - shield: charybdis_right_dongle
+        board: nice_nano//zmk
+      - shield: charybdis_dongle
